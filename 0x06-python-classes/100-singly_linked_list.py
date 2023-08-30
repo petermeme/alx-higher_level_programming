@@ -76,7 +76,7 @@ class SinglyLinkedList:
         list_string = ""
         temp = self.__head
 
-        while(temp):
+        while (temp):
             list_string += str(temp.data)
 
             if (temp.next_node):
