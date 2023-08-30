@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-
 """Module that defines a Square class"""
-
 
 
 class Square:
@@ -9,7 +7,7 @@ class Square:
 
     def __init__(self, size=0):
         """Constructor of the Square class"""
-        if isinstance(size, int) != True:
+        if isinstance(size, int) is not True:
             raise TypeError("size must be an integer")
             return
 
