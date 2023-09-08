@@ -30,17 +30,17 @@ def matrix_mul(m_a, m_b):
             raise TypeError('m_b must be a list of lists')
 
     # no empty lists
-    if len(m_a) is 0:
+    if len(m_a) == 0:
         raise ValueError("m_a can't be empty")
-    if len(m_b) is 0:
+    if len(m_b) == 0:
         raise ValueError("m_b can't be empty")
 
     # no empty lists inside lists
     for row in m_a:
-        if len(row) is 0:
+        if len(row) == 0:
             raise ValueError("m_a can't be empty")
     for row in m_b:
-        if len(row) is 0:
+        if len(row) == 0:
             raise ValueError("m_b can't be empty")
 
     # matricies only contain ints or floats
