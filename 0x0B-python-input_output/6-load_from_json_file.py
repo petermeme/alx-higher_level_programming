@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+create an object module
+"""
+
 
 import json
 
