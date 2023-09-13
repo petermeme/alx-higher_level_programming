@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Json rep of a string module
+"""
+
 
 import json
 
