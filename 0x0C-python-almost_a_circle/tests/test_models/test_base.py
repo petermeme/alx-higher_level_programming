@@ -2,7 +2,7 @@
 '''Module for Base unit tests.'''
 import os
 import unittest
-from models.base.py import Base
+from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 
