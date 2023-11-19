@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     # Query to get all State objects with a name containing the letter 'a'
     states = (session.query(State).filter(State.name.like('%a%')).
-                        all())
+              all())
 
     # Delete the State objects
     for state in states:

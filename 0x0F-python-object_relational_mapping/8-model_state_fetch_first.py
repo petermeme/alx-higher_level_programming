@@ -24,12 +24,12 @@ if __name__ == '__main__':
     session = Session()
 
     # Query to get the first State object
-    state = session.query(State).order_by(State.id).first()
+    first = session.query(State).order_by(State.id).first()
 
     # Print the result
-    if state:
-        print("{}: {}".format(first_state.id, first_state.name))
-    else:
+    if first is None:
         print("Nothing")
+    else:
+        print("{}: {}".format(first.id, first.name))
     # Close the session
     session.close()
