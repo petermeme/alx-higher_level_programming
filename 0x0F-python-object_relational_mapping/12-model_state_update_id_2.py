@@ -1,23 +1,34 @@
 #!/usr/bin/python3
-# Prints the first State object from the database hbtn_0e_6_usa.
-# Usage: ./8-model_state_fetch_first.py <mysql username> /
-#                                       <mysql password> /
-#                                       <database name>
+"""Script to change the name of a State object in the database hbtn_0e_6_usa"""
+
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import State, Base
+from model_state import Base, State
 
-if __name__ == "__main__":
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
+if __name__ == '__main__':
+    # Database connection parameters
+    username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
+
+    # Create a connection to the database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.
+                           format(username, password, database),
                            pool_pre_ping=True)
 
+    # Create the table
     Base.metadata.create_all(engine)
-    
+
+    # Create a session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).filter_by(id=2).first()
-    state.name = "New Mexico"
-    session.commit()
+    # Query to get the State object with id = 2
+    state = session.query(State).filter(State.id == 2).first()
+
+    # Change the name to "New Mexico"
+    if state:
+        state.name = "New Mexico"
+        session.commit()
+
+    # Close the session
+    session.close()

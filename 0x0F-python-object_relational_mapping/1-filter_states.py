@@ -1,24 +1,24 @@
 #!/usr/bin/python3
-import MySQLdb
+"""
+This module  lists all states from the database hbtn_0e_0_usa
+starting with N
+"""
 import sys
 
-""" Write a script that lists all states from the database hbtn_0e_0_usa"""
-""" code should not be executed when imported"""
-if __name__ == "__main__":
-    """ script should take 3 arguments: mysql username, mysql password """
-    db = MySQLdb.connect(host='localhost', port=3306, user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3])
+import MySQLdb
+
+if __name__ == '__main__':
+    host = 'localhost'
+    port = 3306
+    user = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    db = MySQLdb.connect(host=host, port=port, user=user,
+                         password=password, db=database, charset='utf8')
     cur = db.cursor()
-    """ Results must be sorted in ascending order by states.id """
-    """ execute query """
-    cur.execute("SELECT * FROM states WHERE\
-    name LIKE BINARY 'N%' ORDER BY states.id")
-
-    """ fetch and print """
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-
-    """ close cursor and database"""
+    cur.execute("""SELECT id, name FROM states
+    WHERE BINARY name LIKE 'N%' ORDER BY id ASC""")
+    for state in cur.fetchall():
+        print(state)
     cur.close()
     db.close()

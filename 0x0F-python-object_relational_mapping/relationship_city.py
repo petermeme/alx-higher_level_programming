@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Module containing the City class definition"""
+"""Module containing the improved City class definition"""
 
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship, declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 

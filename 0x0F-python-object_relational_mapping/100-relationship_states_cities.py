@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-"""Script to add the State object "Louisiana" to the database hbtn_0e_6_usa"""
+"""Script to create the State "California" with the City "San Francisco"
+in the database hbtn_0e_100_usa"""
 
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
+from relationship_state import Base, State
+from relationship_city import City
 
 if __name__ == '__main__':
 
@@ -16,22 +18,19 @@ if __name__ == '__main__':
                            format(username, password, database),
                            pool_pre_ping=True)
 
-    # Create the table
+    # Create the tables
     Base.metadata.create_all(engine)
 
     # Create a session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Create a new State object
-    state = State(name="Louisiana")
+    # Create the State "California" with the City "San Francisco"
+    california = State(name="California", cities=[City(name="San Francisco")])
 
     # Add the State object to the session and commit to the database
-    session.add(state)
+    session.add(california)
     session.commit()
-
-    # Print the new states.id
-    print(state.id)
 
     # Close the session
     session.close()

@@ -1,28 +1,22 @@
 #!/usr/bin/python3
+"""This module  lists all cities from the database hbtn_0e_0_usa"""
+import sys
+
 import MySQLdb
-from sys import argv
 
-#Write a script that lists all states from the database hbtn_0e_0_usa
-#code should not be executed when imported
-if __name__ == "__main__":
-    #script should take 3 arguments: mysql username, mysql password and database name (no argument validation needed)
-    db = MySQLdb.connect(host='localhost',port=3306,user=argv[1], passwd=argv[2], db=argv[3])
+if __name__ == '__main__':
+    host = 'localhost'
+    port = 3306
+    user = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    sname = sys.argv[4]
+    db = MySQLdb.connect(host=host, port=port, user=user,
+                         password=password, db=database, charset='utf8')
     cur = db.cursor()
-    #Results must be sorted in ascending order by states.id
-    state = (argv[4], )
-    cmd = "SELECT cities.name FROM cities JOIN states ON\
-    cities.state_id = states.id AND states.name = %s ORDER BY cities.id ASC"
-
-    cur.execute(cmd, state)
-
-    # fetch
-    rows = cur.fetchall()
-
-    # print
-    ll = [x[0] for x in rows]
-    together = ", ".join(ll)
-    print(together)
-
-    # close
+    query = """SELECT ct.id, ct.name FROM cities ct LEFT JOIN
+    states st ON st.id = ct.state_id WHERE st.name=%s  ORDER BY ct.id ASC"""
+    cur.execute(query, (sname,))
+    print(', '.join([city[1] for city in cur.fetchall()]))
     cur.close()
     db.close()
