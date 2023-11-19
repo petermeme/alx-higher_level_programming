@@ -10,4 +10,6 @@ if __name__ == "__main__":
     cur = db.cursor()
     #Results must be sorted in ascending order by states.id
     cur.execute("SELECT * FROM states ORDER BY id")
-    [print (state) for state in cur.fetchall()]
+    results = cur.fetchall()
+    for record in results:
+        print(record)
