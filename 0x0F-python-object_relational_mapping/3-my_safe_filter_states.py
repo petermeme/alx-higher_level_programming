@@ -6,7 +6,7 @@ import sys
 #code should not be executed when imported
 def main():
     if len(sys.argv) == 5:
-        #script should take 3 arguments: mysql username, mysql password and database name (no argument validation needed)
+        # script should take 3 arguments: mysql username, mysql password
         db = MySQLdb.connect(host='localhost',port=3306,user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
         cur = db.cursor()
         #Results must be sorted in ascending order by states.id
