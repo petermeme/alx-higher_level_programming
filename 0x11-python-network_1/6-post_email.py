@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script that takes in a URL and an email address, sends a POST request 
+Script that takes in a URL and an email address, sends a POST request
 """
 import requests
 from sys import argv

@@ -4,7 +4,7 @@ from urllib.request import Request, urlopen
 
 
 if __name__ == "__main__":
-    """ The body of the response must be displayed like the following example"""
+    """ The body of the response must be displayed like the following"""
     req = Request("https://alx-intranet.hbtn.io/status")
     with urlopen(req) as response:
         body = response.read()
